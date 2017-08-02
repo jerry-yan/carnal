@@ -84,7 +84,7 @@ function c539193.initial_effect(c)
 end
 c539193.lvupcount=1
 c539193.lvup={90030966}
-function c539193539193.addc(e,tp,eg,ep,ev,re,r,rp)
+function c539193.addc(e,tp,eg,ep,ev,re,r,rp)
 	if ep~=tp then
 		e:GetHandler():AddCounter(0x660,2)
 	end
