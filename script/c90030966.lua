@@ -43,51 +43,6 @@ function c90030966.initial_effect(c)
 	e4:SetTarget(c90030966.atktg)
 	e4:SetOperation(c90030966.atkop)
 	c:RegisterEffect(e4)
-	--global check for summon limits
-	if not c90030966.global_check then
-		c90030966.global_check=true
-		c90030966[0]=false
-		c90030966[1]=false
-		local ge0=Effect.GlobalEffect()
-		ge0:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-		ge0:SetCode(EVENT_SUMMON_SUCCESS)
-		ge0:SetCondition(function(e,tp,eg,ep,ev,re,r,rp)
-			return eg:IsExists(function(c) return c:GetOriginalCode()==90030966 end,1,nil)
-		end)
-		ge0:SetOperation(function(e,tp,eg,ep,ev,re,r,rp)
-			c90030966[ep]=true
-		end)
-		Duel.RegisterEffect(ge0,0)
-		local ge1=ge0:Clone()
-		ge1:SetCode(EVENT_FLIP_SUMMON_SUCCESS)
-		Duel.RegisterEffect(ge1,0)
-		local ge2=ge0:Clone()
-		ge2:SetCode(EVENT_SPSUMMON_SUCCESS)
-		Duel.RegisterEffect(ge2,0)
-		local ge3=Effect.GlobalEffect()
-		ge3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-		ge3:SetCode(EVENT_PHASE_START+PHASE_DRAW)
-		ge3:SetOperation(function(e,tp,eg,ep,ev,re,r,rp)
-			c90030966[0]=false
-			c90030966[1]=false
-		end)
-		Duel.RegisterEffect(ge3,0)
-		local ge4=Effect.GlobalEffect()
-		ge4:SetType(EFFECT_TYPE_FIELD)
-		ge4:SetCode(EFFECT_CANNOT_SUMMON)
-		ge4:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
-		ge4:SetTargetRange(1,1)
-		ge4:SetValue(function(e,c,sump,sumtype,sumpos,targetp)
-			return c:GetOriginalCode()==90030966 and c90030966[sump]
-		end)
-		Duel.RegisterEffect(ge4,0)
-		local ge5=ge4:Clone()
-		ge5:SetCode(EFFECT_CANNOT_FLIP_SUMMON)
-		Duel.RegisterEffect(ge5,0)
-		local ge6=ge4:Clone()
-		ge6:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
-		Duel.RegisterEffect(ge6,0)
-	end
 end
 c90030966.lvupcount=1
 c90030966.lvup={47880400}
